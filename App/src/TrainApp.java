@@ -25,16 +25,16 @@ public class TrainApp {
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 60));
+        bogies.add(new Bogie("Sleeper", 70));
         bogies.add(new Bogie("First Class", 40));
 
-        List<Bogie> filteredBogies = bogies.stream()
-                .filter(b -> b.capacity > 60)
-                .collect(Collectors.toList());
+        Map<String, List<Bogie>> grouped = bogies.stream()
+                .collect(Collectors.groupingBy(b -> b.name));
 
-        System.out.println("Filtered Bogies (Capacity > 60):");
+        System.out.println("Grouped Bogies:");
 
-        for (Bogie b : filteredBogies) {
-            System.out.println(b);
+        for (Map.Entry<String, List<Bogie>> entry : grouped.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
 
         System.out.println("Program continues...");
