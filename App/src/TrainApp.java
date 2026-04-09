@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Bogie {
     String name;
@@ -26,11 +27,13 @@ public class TrainApp {
         bogies.add(new Bogie("AC Chair", 60));
         bogies.add(new Bogie("First Class", 40));
 
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        System.out.println("Bogies sorted by capacity:");
+        System.out.println("Filtered Bogies (Capacity > 60):");
 
-        for (Bogie b : bogies) {
+        for (Bogie b : filteredBogies) {
             System.out.println(b);
         }
 
