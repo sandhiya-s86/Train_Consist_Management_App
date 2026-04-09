@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 public class TrainApp {
 
@@ -6,26 +6,16 @@ public class TrainApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // Step 1: Create LinkedList for train consist
-        LinkedList<String> trainConsist = new LinkedList<>();
+        LinkedHashSet<String> trainFormation = new LinkedHashSet<>();
 
-        // Step 2: Add bogies
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper");
-        trainConsist.add("AC");
-        trainConsist.add("Cargo");
-        trainConsist.add("Guard");
+        trainFormation.add("Engine");
+        trainFormation.add("Sleeper");
+        trainFormation.add("Cargo");
+        trainFormation.add("Guard");
+        trainFormation.add("Sleeper");
 
-        // Step 3: Insert Pantry Car at position 2
-        trainConsist.add(2, "Pantry Car");
-
-        // Step 4: Remove first and last bogie
-        trainConsist.removeFirst();
-        trainConsist.removeLast();
-
-        // Step 5: Display final ordered consist
-        System.out.println("Final Train Consist:");
-        System.out.println(trainConsist);
+        System.out.println("Final Train Formation:");
+        System.out.println(trainFormation);
 
         System.out.println("Program continues...");
     }
