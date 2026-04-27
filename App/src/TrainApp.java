@@ -20,20 +20,23 @@ class GoodsBogie {
     void assignCargo(String cargo) {
         try {
             // Safety Rule
-            if (type.equalsIgnoreCase("Rectangular") && cargo.equalsIgnoreCase("Petroleum")) {
+            if (type.equalsIgnoreCase("Rectangular") &&
+                    cargo.equalsIgnoreCase("Petroleum")) {
+
                 throw new CargoSafetyException(
                         "Unsafe: Petroleum cannot be assigned to Rectangular bogie"
                 );
             }
 
-            // Valid assignment
             this.cargo = cargo;
-            System.out.println("Cargo '" + cargo + "' assigned to " + type + " bogie");
+            System.out.println("Cargo '" + cargo +
+                    "' assigned to " + type + " bogie");
 
         } catch (CargoSafetyException e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
-            System.out.println("Cargo assignment attempt completed for " + type + " bogie\n");
+            System.out.println("Cargo assignment attempt completed for "
+                    + type + " bogie\n");
         }
     }
 
@@ -49,35 +52,33 @@ public class TrainApp {
 
         System.out.println("=== Train Consist Management App ===");
 
+        // -------------------------------------------------
+        // UC15 - Cargo Safety
+        // -------------------------------------------------
         GoodsBogie b1 = new GoodsBogie("Cylindrical");
         GoodsBogie b2 = new GoodsBogie("Rectangular");
 
-        // Safe assignment
-        b1.assignCargo("Petroleum");
+        b1.assignCargo("Petroleum");   // Safe
+        b2.assignCargo("Petroleum");   // Unsafe
+        b2.assignCargo("Coal");        // Safe
 
-        // Unsafe assignment
-        b2.assignCargo("Petroleum");
-
-        // Another safe assignment
-        b2.assignCargo("Coal");
-
-        // Display final state
         System.out.println("Final Bogie Status:");
         b1.display();
         b2.display();
 
+        // -------------------------------------------------
+        // UC16 - Bubble Sort Passenger Capacities
+        // -------------------------------------------------
         System.out.println("\n=== UC16: Sort Passenger Bogies by Capacity ===");
 
-        // Passenger bogie capacities
         int[] capacities = {72, 56, 24, 70, 60};
 
-        // Display original array
         System.out.print("Original Capacities: ");
         for (int c : capacities) {
             System.out.print(c + " ");
         }
 
-        // Bubble Sort Logic
+        // Bubble Sort
         for (int i = 0; i < capacities.length - 1; i++) {
             for (int j = 0; j < capacities.length - 1 - i; j++) {
 
@@ -89,11 +90,32 @@ public class TrainApp {
             }
         }
 
-        // Display sorted array
         System.out.print("\nSorted Capacities : ");
         for (int c : capacities) {
             System.out.print(c + " ");
         }
+
+        // -------------------------------------------------
+        // UC17 - Sort Bogie Names using Arrays.sort()
+        // -------------------------------------------------
+        System.out.println("\n\n=== UC17: Sort Bogie Names ===");
+
+        String[] bogieNames = {
+                "Sleeper",
+                "AC Chair",
+                "First Class",
+                "General",
+                "Luxury"
+        };
+
+        System.out.println("Original Names: " +
+                Arrays.toString(bogieNames));
+
+        // Built-in sorting
+        Arrays.sort(bogieNames);
+
+        System.out.println("Sorted Names  : " +
+                Arrays.toString(bogieNames));
 
         System.out.println("\nProgram continues safely...");
     }
