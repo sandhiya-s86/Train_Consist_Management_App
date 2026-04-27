@@ -78,7 +78,6 @@ public class TrainApp {
 
         for (int i = 0; i < capacities.length - 1; i++) {
             for (int j = 0; j < capacities.length - 1 - i; j++) {
-
                 if (capacities[j] > capacities[j + 1]) {
                     int temp = capacities[j];
                     capacities[j] = capacities[j + 1];
@@ -116,7 +115,7 @@ public class TrainApp {
         // =================================================
         // UC18 - Linear Search for Bogie ID
         // =================================================
-        System.out.println("\n=== UC18: Search Bogie ID ===");
+        System.out.println("\n=== UC18: Search Bogie ID (Linear Search) ===");
 
         String[] bogieIds = {
                 "BG101",
@@ -144,6 +143,50 @@ public class TrainApp {
             System.out.println("Bogie ID " + searchId + " found.");
         } else {
             System.out.println("Bogie ID " + searchId + " not found.");
+        }
+
+        // =================================================
+        // UC19 - Binary Search for Bogie ID
+        // =================================================
+        System.out.println("\n=== UC19: Search Bogie ID (Binary Search) ===");
+
+        String[] sortedIds = {
+                "BG101",
+                "BG205",
+                "BG309",
+                "BG412",
+                "BG550"
+        };
+
+        String key = "BG412";
+
+        int low = 0;
+        int high = sortedIds.length - 1;
+        boolean isFound = false;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int result = key.compareTo(sortedIds[mid]);
+
+            if (result == 0) {
+                isFound = true;
+                break;
+            } else if (result < 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        System.out.println("Sorted IDs: " +
+                Arrays.toString(sortedIds));
+
+        if (isFound) {
+            System.out.println("Bogie ID " + key + " found.");
+        } else {
+            System.out.println("Bogie ID " + key + " not found.");
         }
 
         System.out.println("\nProgram continues safely...");
