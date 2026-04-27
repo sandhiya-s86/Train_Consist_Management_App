@@ -21,7 +21,9 @@ class GoodsBogie {
         try {
             // Safety Rule
             if (type.equalsIgnoreCase("Rectangular") && cargo.equalsIgnoreCase("Petroleum")) {
-                throw new CargoSafetyException("Unsafe: Petroleum cannot be assigned to Rectangular bogie");
+                throw new CargoSafetyException(
+                        "Unsafe: Petroleum cannot be assigned to Rectangular bogie"
+                );
             }
 
             // Valid assignment
@@ -36,7 +38,8 @@ class GoodsBogie {
     }
 
     void display() {
-        System.out.println("Bogie Type: " + type + ", Cargo: " + (cargo != null ? cargo : "None"));
+        System.out.println("Bogie Type: " + type +
+                ", Cargo: " + (cargo != null ? cargo : "None"));
     }
 }
 
@@ -63,6 +66,35 @@ public class TrainApp {
         b1.display();
         b2.display();
 
-        System.out.println("Program continues safely...");
+        System.out.println("\n=== UC16: Sort Passenger Bogies by Capacity ===");
+
+        // Passenger bogie capacities
+        int[] capacities = {72, 56, 24, 70, 60};
+
+        // Display original array
+        System.out.print("Original Capacities: ");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        // Bubble Sort Logic
+        for (int i = 0; i < capacities.length - 1; i++) {
+            for (int j = 0; j < capacities.length - 1 - i; j++) {
+
+                if (capacities[j] > capacities[j + 1]) {
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        // Display sorted array
+        System.out.print("\nSorted Capacities : ");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        System.out.println("\nProgram continues safely...");
     }
 }
