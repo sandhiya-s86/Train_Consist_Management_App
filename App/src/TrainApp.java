@@ -9,17 +9,15 @@ class CargoSafetyException extends RuntimeException {
 
 // Goods Bogie Class
 class GoodsBogie {
-    String type;   // Rectangular / Cylindrical
+    String type;
     String cargo;
 
     GoodsBogie(String type) {
         this.type = type;
     }
 
-    // Method to assign cargo safely
     void assignCargo(String cargo) {
         try {
-            // Safety Rule
             if (type.equalsIgnoreCase("Rectangular") &&
                     cargo.equalsIgnoreCase("Petroleum")) {
 
@@ -52,23 +50,23 @@ public class TrainApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // -------------------------------------------------
-        // UC15 - Cargo Safety
-        // -------------------------------------------------
+        // =================================================
+        // UC15 - Cargo Safety Validation
+        // =================================================
         GoodsBogie b1 = new GoodsBogie("Cylindrical");
         GoodsBogie b2 = new GoodsBogie("Rectangular");
 
-        b1.assignCargo("Petroleum");   // Safe
-        b2.assignCargo("Petroleum");   // Unsafe
-        b2.assignCargo("Coal");        // Safe
+        b1.assignCargo("Petroleum");
+        b2.assignCargo("Petroleum");
+        b2.assignCargo("Coal");
 
         System.out.println("Final Bogie Status:");
         b1.display();
         b2.display();
 
-        // -------------------------------------------------
+        // =================================================
         // UC16 - Bubble Sort Passenger Capacities
-        // -------------------------------------------------
+        // =================================================
         System.out.println("\n=== UC16: Sort Passenger Bogies by Capacity ===");
 
         int[] capacities = {72, 56, 24, 70, 60};
@@ -78,7 +76,6 @@ public class TrainApp {
             System.out.print(c + " ");
         }
 
-        // Bubble Sort
         for (int i = 0; i < capacities.length - 1; i++) {
             for (int j = 0; j < capacities.length - 1 - i; j++) {
 
@@ -95,9 +92,9 @@ public class TrainApp {
             System.out.print(c + " ");
         }
 
-        // -------------------------------------------------
+        // =================================================
         // UC17 - Sort Bogie Names using Arrays.sort()
-        // -------------------------------------------------
+        // =================================================
         System.out.println("\n\n=== UC17: Sort Bogie Names ===");
 
         String[] bogieNames = {
@@ -111,11 +108,43 @@ public class TrainApp {
         System.out.println("Original Names: " +
                 Arrays.toString(bogieNames));
 
-        // Built-in sorting
         Arrays.sort(bogieNames);
 
         System.out.println("Sorted Names  : " +
                 Arrays.toString(bogieNames));
+
+        // =================================================
+        // UC18 - Linear Search for Bogie ID
+        // =================================================
+        System.out.println("\n=== UC18: Search Bogie ID ===");
+
+        String[] bogieIds = {
+                "BG101",
+                "BG205",
+                "BG309",
+                "BG412",
+                "BG550"
+        };
+
+        String searchId = "BG309";
+
+        System.out.println("Available Bogie IDs: " +
+                Arrays.toString(bogieIds));
+
+        boolean found = false;
+
+        for (String id : bogieIds) {
+            if (id.equals(searchId)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("Bogie ID " + searchId + " found.");
+        } else {
+            System.out.println("Bogie ID " + searchId + " not found.");
+        }
 
         System.out.println("\nProgram continues safely...");
     }
