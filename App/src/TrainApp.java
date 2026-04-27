@@ -127,9 +127,6 @@ public class TrainApp {
 
         String searchId = "BG309";
 
-        System.out.println("Available Bogie IDs: " +
-                Arrays.toString(bogieIds));
-
         boolean found = false;
 
         for (String id : bogieIds) {
@@ -180,13 +177,29 @@ public class TrainApp {
             }
         }
 
-        System.out.println("Sorted IDs: " +
-                Arrays.toString(sortedIds));
-
         if (isFound) {
             System.out.println("Bogie ID " + key + " found.");
         } else {
             System.out.println("Bogie ID " + key + " not found.");
+        }
+
+        // =================================================
+        // UC20 - Prevent Search on Empty Train
+        // =================================================
+        System.out.println("\n=== UC20: Empty Train Validation ===");
+
+        ArrayList<String> emptyTrain = new ArrayList<>();
+
+        try {
+            if (emptyTrain.isEmpty()) {
+                throw new IllegalStateException(
+                        "Search cannot be performed: No bogies attached to the train."
+                );
+            }
+
+            System.out.println("Searching bogies...");
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
         }
 
         System.out.println("\nProgram continues safely...");
